@@ -1,6 +1,7 @@
 import stl
 
 from vector import Vector3
+from transform import Transform
 
 class Mesh:
     def __init__(self):
@@ -16,7 +17,8 @@ class Mesh:
         # Rectangular bounds
         self.bounds = ()
 
-
+        # Identity transform
+        self.transform = Transform()
     @staticmethod
     def from_stl(stl_path):
         """Reads the stl file at stl_path and converts it to our own vertex list format"""
