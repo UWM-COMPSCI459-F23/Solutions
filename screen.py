@@ -45,5 +45,12 @@ class Screen:
         pygame.quit()
 
 
+    def screen_to_pixel(self, x, z):
+        """Provides a pixel coordinate for the point with x, z coordinates in screen space"""
+        return np.array([int((x + 1) * self.width / 2), int((z + 1) * self.height / 2)])
 
+    # Added in Camera Assignment
+    def pixel_to_screen(self, x, y):
+        """Provides a screen space coordinate for the pixel with x, y coordinates"""
+        return np.array([(2 * (x + 0.5) / self.width) - 1.0, 0.0, (2 * (y + 0.5) / self.height) - 1.0])
 
