@@ -20,7 +20,7 @@ class Screen:
             raise Exception("buffer and screen not the same size")
 
         # Flip buffer
-        buf = np.fliplr(buf)
+        #buf = np.fliplr(buf)
 
         # The prefered way to accomplish this
         pygame.pixelcopy.array_to_surface(self.screen, buf)
