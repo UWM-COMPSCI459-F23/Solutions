@@ -4,7 +4,8 @@ from vector import Vector3
 from transform import Transform
 
 class Mesh:
-    def __init__(self):
+    def __init__(self, diffuse_color=np.array([1.0, 0.0, 1.0]), \
+                 specular_color=np.array([1.0, 1.0, 1.0]), ka=0.2, kd=1.0, ks=0.2, ke=100):
         # Positions of vertex in local space (x, y, z)
         self.verts = []
 
@@ -19,8 +20,17 @@ class Mesh:
 
         # Identity transform
         self.transform = Transform()
+
+        # The mesh's material properties (maybe move to a separate class?)
+        self.diffuse_color = diffuse_color
+        self.specular_color = specular_color
+        self.ka = ka
+        self.kd = kd
+        self.ks = ks
+        self.ke = ke
+
     @staticmethod
-    def from_stl(stl_path):
+    def from_stl(stl_path,diffuse_color,specular_color,ka,kd,ks,ke):
         """Reads the stl file at stl_path and converts it to our own vertex list format"""
 
         # Use numpy-stl to read the STL file
@@ -77,7 +87,7 @@ class Mesh:
 
 
         # Instantiate the mesh and add the componenents
-        mesh = Mesh()
+        mesh = Mesh(diffuse_color, specular_color, ka, kd, ks, ke)
         mesh.verts = verts
         mesh.faces = faces
         mesh.normals = normals
